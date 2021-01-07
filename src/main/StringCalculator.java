@@ -8,7 +8,7 @@ public class StringCalculator {
 		if(str.isEmpty()) return 0;
 		else {
 			String[] numbers = getDelimitedNumbers(str);
-			Integer sum = Arrays.stream(numbers).mapToInt(this::toInt).sum();
+			Integer sum = Arrays.stream(numbers).mapToInt(this::toInt).map(num -> checkNegativeNumber(num)).sum();
 			return sum;
 		}
 	}
@@ -21,6 +21,13 @@ public class StringCalculator {
 		} else {
 			return str.split(",|\n");
 		}
+	}
+	
+	private int checkNegativeNumber(int number) {
+		if(number<0) {
+			throw new IllegalArgumentException("negatives not allowed -" + number);
+		}
+		return number;
 	}
 		
 	private int toInt(String strInt) throws NumberFormatException {
