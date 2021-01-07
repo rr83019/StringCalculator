@@ -2,6 +2,10 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 
 import main.StringCalculator;
@@ -12,8 +16,10 @@ class StringCalculatorTest {
 	
 	private String toString(Integer... integers) {
 		String str = "";
+		Random random = new Random();
+		List<String> delimiter = Arrays.asList(",", "\n");
 		for(Integer ints: integers) {
-			str += ints.toString()+",";
+			str += ints.toString()+delimiter.get(random.nextInt(delimiter.size()));
 		}
 		return str;
 	}
@@ -46,9 +52,9 @@ class StringCalculatorTest {
 	
 	@Test
 	void newLineDelimiterTest() {
-		Integer number1 = 3, number2 = 5;
-		String str = number1.toString()+"\n"+number2.toString();
-		assertEquals(number1+number2, calc.Add(str));
+		Integer number1 = 3, number2 = 5, number3 = 1;
+		String str = toString(number1,number2,number3);
+		assertEquals(number1+number2+number3, calc.Add(str));
 	}
 
 }
