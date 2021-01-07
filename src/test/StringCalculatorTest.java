@@ -2,8 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import main.StringCalculator;
@@ -44,6 +42,13 @@ class StringCalculatorTest {
 		Integer sum = number1+number2+number3+number4;
 		String str = toString(number1, number2, number3, number4);
 		assertEquals(sum,calc.Add(str));
+	}
+	
+	@Test
+	void newLineDelimiterTest() {
+		Integer number1 = 3, number2 = 5;
+		String str = number1.toString()+"\n"+number2.toString();
+		assertEquals(number1+number2, calc.Add(str));
 	}
 
 }
