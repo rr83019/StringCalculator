@@ -1,14 +1,22 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class StringCalculator {
+	
+	private List<Integer> negativeNumbers = new ArrayList<Integer>();
 
 	public Integer Add(String str) {
 		if(str.isEmpty()) return 0;
 		else {
 			String[] numbers = getDelimitedNumbers(str);
 			Integer sum = Arrays.stream(numbers).mapToInt(this::toInt).map(num -> checkNegativeNumber(num)).sum();
+			if(!negativeNumbers.isEmpty()) {
+				System.out.print(negativeNumbers.toString());
+				throw new IllegalArgumentException("negatives not allowed -" + negativeNumbers);
+			}
 			return sum;
 		}
 	}
@@ -25,7 +33,7 @@ public class StringCalculator {
 	
 	private int checkNegativeNumber(int number) {
 		if(number<0) {
-			throw new IllegalArgumentException("negatives not allowed -" + number);
+			negativeNumbers.add(number);
 		}
 		return number;
 	}
