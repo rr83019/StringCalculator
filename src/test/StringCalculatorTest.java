@@ -72,7 +72,21 @@ class StringCalculatorTest {
 			calc.Add(str);
 		});
 
-	    String expectedMessage = "negatives not allowed -"+number2.toString();
+	    String expectedMessage = "negatives not allowed -["+number2.toString()+"]";
+	    String actualMessage = exception.getMessage();
+
+	    assertTrue(actualMessage.contains(expectedMessage));
+	}
+	
+	@Test
+	void mulitpleNegativeNumbersArgsTest() {
+		Integer number1 = -2, number2 = -10;
+		String str = toString(number1,number2);
+		Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			calc.Add(str);
+		});
+
+	    String expectedMessage = "negatives not allowed -["+number1.toString()+", "+number2.toString()+"]";
 	    String actualMessage = exception.getMessage();
 
 	    assertTrue(actualMessage.contains(expectedMessage));
