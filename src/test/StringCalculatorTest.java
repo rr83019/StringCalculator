@@ -21,5 +21,12 @@ class StringCalculatorTest {
 		Integer number = 2;
 		assertEquals(number, calc.Add(number.toString()));
 	}
+	
+	@Test
+	void twoNumberArgTest() {
+		Integer number1 = 2, number2 = 4;
+		assertEquals(number1+number2, calc.Add(number1.toString()+","+number2.toString()));
+		
+	}
 
 }
