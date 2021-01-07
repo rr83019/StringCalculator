@@ -56,5 +56,11 @@ class StringCalculatorTest {
 		String str = toString(number1,number2,number3);
 		assertEquals(number1+number2+number3, calc.Add(str));
 	}
+	
+	@Test
+	void customDelimiterTest() {
+		Integer number1 = 2, number2 = 3;
+		assertEquals(number1+number2, calc.Add("//;\n"+number1.toString()+";"+number2.toString()));
+	}
 
 }
