@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import main.StringCalculator;
@@ -61,6 +62,20 @@ class StringCalculatorTest {
 	void customDelimiterTest() {
 		Integer number1 = 2, number2 = 3;
 		assertEquals(number1+number2, calc.Add("//;\n"+number1.toString()+";"+number2.toString()));
+	}
+	
+	@Test
+	void negativeNumbersArgsTest() {
+		Integer number1 = 2, number2 = -10;
+		String str = toString(number1,number2);
+		Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			calc.Add(str);
+		});
+
+	    String expectedMessage = "negatives not allowed -"+number2.toString();
+	    String actualMessage = exception.getMessage();
+
+	    assertTrue(actualMessage.contains(expectedMessage));
 	}
 
 }
