@@ -3,7 +3,8 @@ package main;
 public class StringCalculator {
 
 	public Integer Add(String str) {
-		return -1;
+		if(str.isEmpty()) return 0;
+		else return -1;
 	}
 	
 	
