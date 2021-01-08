@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 	
@@ -28,9 +30,11 @@ public class StringCalculator {
 	
 	private String[] getDelimitedNumbers(String str) {
 		if(str.startsWith("//")) {
-			String[] newStr = str.split("\n");
-			String delimiter = newStr[0].split("//")[1];
-			return newStr[1].split(delimiter);
+			Matcher match = Pattern.compile("//(.*)\n(.*)").matcher(str);
+			match.matches();
+			String delimiter = match.group(1).replaceAll("\\[|\\]","");
+			String number = match.group(2);
+			return number.split(Pattern.quote(delimiter));
 		} else {
 			return str.split(",|\n");
 		}
