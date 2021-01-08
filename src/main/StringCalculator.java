@@ -32,11 +32,33 @@ public class StringCalculator {
 		if(str.startsWith("//")) {
 			Matcher match = Pattern.compile("//(.*)\n(.*)").matcher(str);
 			match.matches();
-			String delimiter = match.group(1).replaceAll("\\[|\\]","");
+			String delimiter = getDelimiter(match.group(1));
 			String number = match.group(2);
-			return number.split(Pattern.quote(delimiter));
+			return number.split(delimiter);
 		} else {
 			return str.split(",|\n");
+		}
+	}
+	
+	private String getDelimiter(String delimiter) {
+		if (delimiter.startsWith("[")) {
+			Matcher match = Pattern.compile("\\[(.*?)\\]+").matcher(delimiter);
+			String str = "";
+			while(match.find()) {
+				String delim = match.group(1);
+				if(delim.contains("*")) {
+					for(char c: delim.toCharArray()) {
+						str += "\\"+c;
+					}
+					str += "|";
+				} else {
+					str += delim.toString()+"|";
+				}
+			}
+			str = str.substring(0, str.length()-1);
+			return str;
+		} else {
+			return delimiter;
 		}
 	}
 	
