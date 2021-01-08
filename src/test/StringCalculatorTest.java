@@ -106,10 +106,17 @@ class StringCalculatorTest {
 		String str = "//[***]\n"+number1.toString()+"***"+number2.toString();
 		assertEquals(number1+number2, calc.Add(str));
 	}
+	
+	@Test
+	void multipleDelimiterTest() {
+		Integer number1 = 2, number2 = 3, number3 = 4;
+		String str = "//[*][%]\n"+number1.toString()+"*"+number2.toString()+"%"+number3.toString();
+		assertEquals(number1+number2+number3, calc.Add(str));
+	}
 
 	@AfterAll
 	static void checkAddInvokeTest() {
-		assertEquals(10, StringCalculator.getCalledCount());
+		assertEquals(11, StringCalculator.getCalledCount());
 	}
 
 }
