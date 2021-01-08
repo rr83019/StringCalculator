@@ -7,8 +7,14 @@ import java.util.List;
 public class StringCalculator {
 	
 	private List<Integer> negativeNumbers = new ArrayList<Integer>();
+	private static int calledCount = 0;
+	
+	private void incrementCount() {
+		calledCount++;
+	}
 
 	public Integer Add(String str) {
+		incrementCount();
 		if(str.isEmpty()) return 0;
 		else {
 			String[] numbers = getDelimitedNumbers(str);
@@ -43,7 +49,7 @@ public class StringCalculator {
 	
 
 	public static int getCalledCount() {
-		return -1;
+		return calledCount;
 	}	
 	
 }
