@@ -18,7 +18,7 @@ public class StringCalculator {
 		if(str.isEmpty()) return 0;
 		else {
 			String[] numbers = getDelimitedNumbers(str);
-			Integer sum = Arrays.stream(numbers).mapToInt(this::toInt).map(num -> checkNegativeNumber(num)).sum();
+			Integer sum = Arrays.stream(numbers).mapToInt(this::toInt).map(num -> checkNegativeNumber(num)).filter(num -> num <1000).sum();
 			if(!negativeNumbers.isEmpty()) {
 				throw new IllegalArgumentException("negatives not allowed -" + negativeNumbers);
 			}
