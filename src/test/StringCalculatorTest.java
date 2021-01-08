@@ -99,10 +99,17 @@ class StringCalculatorTest {
 		String str = toString(number1, number2);
 		assertEquals(number1, calc.Add(str));
 	}
+	
+	@Test
+	void mulitpleLengthDelimiterTest() {
+		Integer number1 = 4, number2 = 8;
+		String str = "//[***]\n"+number1.toString()+"***"+number2.toString();
+		assertEquals(number1+number2, calc.Add(str));
+	}
 
 	@AfterAll
 	static void checkAddInvokeTest() {
-		assertEquals(9, StringCalculator.getCalledCount());
+		assertEquals(10, StringCalculator.getCalledCount());
 	}
 
 }
