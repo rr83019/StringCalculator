@@ -92,10 +92,17 @@ class StringCalculatorTest {
 
 	    assertTrue(actualMessage.contains(expectedMessage));
 	}
+	
+	@Test
+	void numberGe1000Test() {
+		Integer number1 = 2, number2 = 1001;
+		String str = toString(number1, number2);
+		assertEquals(number1, calc.Add(str));
+	}
 
 	@AfterAll
 	static void checkAddInvokeTest() {
-		assertEquals(8, StringCalculator.getCalledCount());
+		assertEquals(9, StringCalculator.getCalledCount());
 	}
 
 }
