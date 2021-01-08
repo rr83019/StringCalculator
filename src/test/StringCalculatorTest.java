@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -90,6 +91,11 @@ class StringCalculatorTest {
 	    String actualMessage = exception.getMessage();
 
 	    assertTrue(actualMessage.contains(expectedMessage));
+	}
+
+	@AfterAll
+	static void checkAddInvokeTest() {
+		assertEquals(8, StringCalculator.getCalledCount());
 	}
 
 }
